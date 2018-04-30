@@ -1,0 +1,29 @@
+@import '../../styles/vars'
+@import '../../styles/smart-grid'
+
+.container
+  animation: showSkills .8s forwards
+
+@keyframes showSkills
+  from
+    transform: translateY(1000px)
+  to
+    transform: translateY(0)
+
+.sectionList
+  +row-flex()
+
+.section
+  +col()
+  +size(6)
+  margin-bottom: 20px
+  +size-sm(12)
+
+.title
+  margin-top: 30px
+  font-family: $fontB
+  margin-bottom: 15px
+
+.skillsList
+  display: flex
+  flex-wrap: wrap

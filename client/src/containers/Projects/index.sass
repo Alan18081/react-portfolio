@@ -1,0 +1,48 @@
+@import '../../styles/smart-grid'
+@import '../../styles/vars'
+
+.slider
+  +row-flex()
+
+.activeSlide
+  +col()
+  +size(9)
+  +size-md(12)
+
+.slides
+  +col()
+  +size(3)
+  +size-md(12)
+  height: 80vh
+  +md-block
+    margin-top: 60px
+    height: auto
+
+.list
+  +row-flex()
+
+.arrow
+  left: 54%
+  transform: translateX(-50%)
+  cursor: pointer
+  position: absolute
+  bottom: -50px
+  background: none
+  border: none
+  &:hover
+    .arrowIcon
+      fill: $blue
+
+.arrowIcon
+  width: 34px
+  height: 34px
+  fill: $black
+  transition: all .5s ease
+
+.arrowReversed
+  left: 46%
+  .arrowIcon
+    transform: rotate(180deg)
+
+.scrollbar
+  background: $blue

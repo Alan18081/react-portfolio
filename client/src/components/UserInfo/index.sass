@@ -1,0 +1,47 @@
+@import '../../styles/smart-grid'
+@import '../../styles/vars'
+
+.container
+  margin-top: 80px
+  margin-bottom: 30px
+  +row-flex()
+
+.image
+  border-radius: 4px
+  +col()
+  +size(4)
+  +size-sm(6)
+  +shift-sm-left(3)
+  +size-xs(12)
+  +shift-xs-left(0)
+  animation: showImage .8s forwards
+  img
+    border-radius: 4px
+
+@keyframes showImage
+  from
+    transform: translateX(-1000px)
+  to
+    transform: translateX(0)
+
+.info
+  +col()
+  +size(8)
+  +size-sm(12)
+  animation: showInfo .8s forwards
+
+@keyframes showInfo
+  from
+    transform: translateX(1000px)
+  to
+    transform: translateX(0)
+
+.profession
+  margin-top: 15px
+  margin-bottom: 20px
+  color: $blue
+  font-family: $fontB
+  font-size: 20px
+
+.story
+  margin-bottom: 20px
