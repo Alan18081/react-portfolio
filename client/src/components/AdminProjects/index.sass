@@ -1,0 +1,60 @@
+@import '../../styles/smart-grid'
+@import '../../styles/vars'
+
+.container
+  +row-flex()
+
+.sidebar
+  +col()
+  +size(3)
+  +size-sm(12)
+  animation: showSidebar 1s forwards
+
+@keyframes showSidebar
+  from
+    transform: translateX(-1000px)
+  to
+    transform: translateX(0)
+
+.active
+  +col()
+  +size(9)
+  +size-sm(12)
+  +sm-block
+    order: -1
+    margin-bottom: 30px
+  animation: showActive 1s forwards
+
+.slide
+  padding: 0 10px
+
+@keyframes showActive
+  from
+    transform: translateX(1000px)
+  to
+    transform: translateX(0)
+
+.create
+  margin-bottom: 20px
+  display: block
+
+.link
+  cursor: pointer
+  padding: 12px 20px
+  border-radius: 4px
+  border: 1px solid transparent
+  transition: all .5s ease
+  &:hover
+    color: $blue
+
+.linkActive
+  border-color: $blue
+  color: $blue
+
+
+.empty
+  margin-top: 50px
+  width: 100%
+  text-align: center
+
+

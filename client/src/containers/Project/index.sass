@@ -1,0 +1,58 @@
+@import '../../styles/vars'
+@import '../../styles/smart-grid'
+
+.container
+  +row-flex()
+
+.imageList
+  +col()
+  +size(6)
+
+.info
+  +col()
+  +size(6)
+
+.type
+  margin: 15px 0 30px
+  font-family: $fontB
+  color: $blue
+  font-size: 16px
+
+
+
+.tech
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  border-top: 2px solid $blue
+  border-bottom: 2px solid $blue
+  padding: 20px 25px
+  margin-bottom: 30px
+
+.techIcon
+  color: $blue
+  font-size: 50px
+
+.dots
+  padding: 30px 0
+  display: flex
+  justify-content: center
+
+.dotsItem
+  cursor: pointer
+  margin-right: 10px
+  width: 15px
+  height: 15px
+  border-radius: 50%
+  border: 1px solid $black
+  background: none
+  transition: all .5s ease
+  &:last-child
+    margin-right: 0
+  &:focus
+    background: $blue
+
+.dotsItemActive
+  border-color: $blue
+  background-color: $blue

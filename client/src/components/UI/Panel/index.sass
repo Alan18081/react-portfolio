@@ -1,0 +1,19 @@
+@import '../../../styles/vars'
+@import '../../../styles/smart-grid'
+
+.container
+  border-radius: 4px
+  box-shadow: 0 3px 6px 2px rgba($black,.3)
+  padding: 20px
+  margin-bottom: 50px
+  +xs-block
+    padding: 10px
+
+.animated
+  animation: showPanel .8s forwards
+
+@keyframes showPanel
+  from
+    transform: translateX(-1000px)
+  to
+    transform: translateX(0)

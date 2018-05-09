@@ -1,0 +1,47 @@
+@import '../../styles/vars'
+
+.container
+  transition: all .5s ease
+
+.controls
+  margin-top: 5px
+  display: flex
+  align-items: center
+
+.add
+  cursor: pointer
+  background: none
+  border: none
+  &:hover
+    .icon
+      fill: $blue
+
+
+.close
+  cursor: pointer
+  margin-left: 15px
+  .icon
+    fill: $gray
+    width: 15px
+    height: 15px
+  &:hover
+    .icon
+      fill: $black
+
+.icon
+  width: 24px
+  height: 24px
+  fill: $black
+  transition: all .5s ease
+
+.addEnter
+  opacity: 0
+
+.addEnterActive
+  opacity: 1
+
+.addExit
+  opacity: 1
+
+.addExitActive
+  opacity: 0

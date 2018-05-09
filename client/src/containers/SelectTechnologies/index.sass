@@ -1,0 +1,28 @@
+@import '../../styles/vars'
+
+.container
+  margin-bottom: 30px
+
+.list
+  display: flex
+  flex-wrap: wrap
+
+.item
+  font-size: 12px
+  cursor: pointer
+  transition: all .5s ease
+  margin-right: 15px
+  color: $gray
+  padding: 5px 10px
+  border-radius: 4px
+  border: 1px solid $gray
+  margin-bottom: 10px
+  &:last-child
+    margin-right: 0
+  &:hover
+    border-color: $black
+    color: $black
+
+.itemActive
+  border-color: $blue
+  color: $blue

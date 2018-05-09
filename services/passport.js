@@ -1,9 +1,8 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const keys = require('../config/keys');
-const mongoose = require('mongoose');
 
-const User = mongoose.model('users');
+const User = require('../models/User');
 
 passport.serializeUser((user,done) => {
   done(null,user.id);
@@ -14,23 +13,29 @@ passport.deserializeUser((id,done) => {
 });
 
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
-      callbackURL: '/auth/google/callback',
-      proxy: true
-    },
-    async (accessToken, refreshToken, profile,done) => {
-      const existingUser = await User.findOne({googleId: profile.id})
-        if(existingUser) {
-          return done(null,existingUser);
-        }
-        const user = await new User({
-          googleId: profile.id
-        }).save();
-        return done(null,user);
+passport.use('local.login',new LocalStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+  },
+  async (req,email,password,done) => {
+    try {
+      console.log(email,password);
+      const user = await User.findOne({
+        email
+      });
+      if(!user) {
+        return done(null,false,'User doesn\'t exist');
+      }
+      if(!user.validatePassword(password)) {
+        return done(null,false,'Incorrect password');
+      }
+      return done(null,user);
     }
-  )
-);
+    catch (error) {
+      console.log(error);
+      return done(error);
+    }
+  }
+));

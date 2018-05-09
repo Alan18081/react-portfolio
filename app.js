@@ -5,6 +5,8 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const path = require('path');
+const formData = require('express-form-data');
+const validator = require('express-validator');
 
 mongoose.connect(keys.mongoURI);
 
@@ -19,7 +21,22 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(formData.parse({
+//   autoFiles: true
+// }));
+app.use(validator());
+// app.use(formData.format());
+// app.use(formData.stream());
 
+require('./services/passport');
+
+require('./routes/auth')(app);
+require('./routes/profile')(app);
+require('./routes/skills')(app);
+require('./routes/projects')(app);
+require('./routes/tech')(app);
+require('./routes/emails')(app);
+require('./routes/contacts')(app);
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname,'client','build')));

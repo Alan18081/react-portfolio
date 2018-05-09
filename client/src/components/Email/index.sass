@@ -1,0 +1,51 @@
+@import '../../styles/vars'
+
+.container
+  margin-bottom: 20px
+  border-radius: 4px
+  padding: 20px
+  box-shadow: 0 3px 6px 2px rgba($black,.3)
+  position: relative
+  transition: all .3s ease
+
+.item
+  display: flex
+  margin-bottom: 20px
+  align-items: center
+  position: relative
+
+.icon
+  width: 20px
+  height: 20px
+  fill: $blue
+  margin-right: 15px
+
+.remove
+  cursor: pointer
+  position: absolute
+  top: 10px
+  right: 10px
+  z-index: 5
+  background: none
+  border: none
+  &:hover
+    .removeIcon
+      fill: $black
+
+.removeIcon
+  width: 22px
+  height: 22px
+  fill: $gray
+  transition: all .5s ease
+
+.itemEnter
+  opacity: 0
+
+.itemEnterActive
+  opacity: 1
+
+.itemExit
+  opacity: 1
+
+.itemExitActive
+  opacity: 0

@@ -1,4 +1,5 @@
 @import '../../../styles/vars'
+@import '../../../styles/smart-grid'
 
 .button
   background: none
@@ -9,9 +10,12 @@
   font-size: 15px
   transition: all .5s ease
   border-radius: 70px
+  cursor: pointer
   &:hover
     background-color: $red
     color: #ffffff
+  +xs-block
+    width: 100%
 
 .white
   border-color: #ffffff
@@ -20,3 +24,23 @@
   &:hover
     background-color: #fff
     color: $black
+
+.plain
+  border: none
+  background: none
+  font-size: 14px
+  color: $gray
+  transition: all .5s ease
+  cursor: pointer
+  font-family: $fontB
+  +xs-block
+    margin-top: 15px
+  &:hover
+    color: $black
+
+.offset
+  margin-left: 20px
+
+.full
+  width: 100%
+  min-width: 0

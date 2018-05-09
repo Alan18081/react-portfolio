@@ -1,0 +1,40 @@
+@import '../../styles/vars'
+
+.function
+  display: flex
+  align-items: center
+  margin-bottom: 18px
+  transition: all .3s ease
+
+.functionIcon
+  width: 26px
+  height: 26px
+  fill: $black
+  margin-right: 8px
+
+.remove
+  margin-left: 15px
+  cursor: pointer
+  &:hover
+    .removeIcon
+      fill: $black
+
+.removeIcon
+  width: 16px
+  height: 16px
+  fill: $gray
+  transition: all .5s ease
+
+.itemEnter
+  opacity: 0
+
+.itemEnterActive
+  opacity: 1
+
+.itemExit
+  opacity: 1
+
+.itemExitActive
+  opacity: 0
+
+

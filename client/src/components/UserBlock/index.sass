@@ -13,8 +13,25 @@
   width: 120px
   height: 120px
   margin: 0 auto 30px
+  animation: showAvatar .8s forwards
   img
     border-radius: 50%
+
+@keyframes showAvatar
+  from
+    transform: translateY(-1000px)
+  to
+    transform: translateY(0)
+
+.caption
+  animation: showCaption .8s forwards
+
+@keyframes showCaption
+  from
+    transform: translateY(1000px)
+  to
+    transform: translateY(0)
+
 
 .name
   font-size: 40px

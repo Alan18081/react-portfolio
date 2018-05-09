@@ -1,10 +1,14 @@
 @import '../../styles/vars'
+@import '../../styles/smart-grid'
 
 .container
   position: relative
   overflow: hidden
-  height: 80vh
   display: block
+  height: 70vh
+  border-radius: 4px
+  +sm-block
+    height: 40vh
   &:before
     content: ''
     display: block
@@ -15,12 +19,39 @@
     height: 100%
     background: linear-gradient(to top,$black 0%,transparent 70%)
     z-index: 5
+  &:hover
+    .more
+      top: 0
+
+.more
+  width: 100%
+  z-index: 8
+  padding: 10px
+  position: absolute
+  background: $black
+  top: -100px
+  left: 0
+  transition: all .5s ease
+  color: #ffffff
+  font-family: $fontL
+  display: flex
+  justify-content: center
+  border-radius: 4px 4px 0 0
+
+.moreIcon
+  fill: #ffff
+  width: 20px
+  height: 20px
+  margin-right: 10px
 
 .image
   position: absolute
   left: 0
   top: 0
   width: 100%
+  border-radius: 4px
+  //+sm-block
+  //  position: static
 
 .caption
   position: absolute

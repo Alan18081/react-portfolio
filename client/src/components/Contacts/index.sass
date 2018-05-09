@@ -1,0 +1,35 @@
+@import '../../styles/vars'
+
+.container
+  margin: 30px auto 0
+  max-width: 670px
+
+.social
+  display: flex
+  flex-wrap: wrap
+
+.socialContainer
+  width: 50%
+
+.socialItem
+  display: inline-flex
+  align-items: center
+  padding: 10px 15px
+  margin-bottom: 10px
+  border: 1px solid transparent
+
+.socialLink
+  text-decoration: none
+  color: $blue
+  transition: all .5s ease
+  border-radius: 4px
+  &:hover
+    border-color: $blue
+  .icon
+    fill: $blue
+
+.icon
+  width: 25px
+  height: 25px
+  margin-right: 20px
+  fill: $black

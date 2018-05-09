@@ -1,0 +1,65 @@
+@import '../../styles/vars'
+@import '../../styles/smart-grid'
+
+.container
+  margin-bottom: 40px
+
+.head
+  display: flex
+  align-items: flex-start
+
+.list
+  +row-flex()
+
+.add
+  background: none
+  border: none
+  margin-left: 15px
+  cursor: pointer
+
+.addIcon
+  width: 25px
+  height: 25px
+  fill: $gray
+  transition: all .5s ease
+  &:hover
+    fill: $black
+
+.skill
+  display: flex
+  align-items: center
+  margin-right: 40px
+  margin-bottom: 15px
+  +col()
+  +size(6)
+  +size-xs(12)
+
+.input
+  margin-left: 20px
+  border-radius: 4px
+  padding: 8px
+  font-size: 16px
+  width: 67px
+  border: 1px solid $gray
+  text-align: center
+  transition: all .5s ease
+  &:focus
+    outline: none
+    border-color: $blue
+    color: $blue
+
+.remove
+  cursor: pointer
+  margin-left: 10px
+  margin-top: 3px
+  background: none
+  border: none
+  &:hover
+    .removeIcon
+      fill: $black
+
+.removeIcon
+  width: 20px
+  height: 20px
+  transition: all .5s ease
+  fill: $gray

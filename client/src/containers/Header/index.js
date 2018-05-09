@@ -6,6 +6,7 @@ import classes from './index.sass';
 import MenuIcon from '../../assets/icons/menu.svg';
 import EnvelopeIcon from '../../assets/icons/envelope.svg';
 import CloseIcon from '../../assets/icons/cancel.svg';
+import LogoutIcon from '../../assets/icons/logout.svg';
 
 class Header extends Component {
   state = {
@@ -29,7 +30,7 @@ class Header extends Component {
       },
       {
         text: 'Admin panel',
-        path: '/admin'
+        path: '/admin/dashboard'
       }
     ]
   };
@@ -40,7 +41,7 @@ class Header extends Component {
     });
   };
   render() {
-    const {white} = this.props;
+    const {white,noMessage,admin} = this.props;
     const iconClasses = [
       classes.icon,
       white && classes.iconWhite
@@ -51,7 +52,7 @@ class Header extends Component {
       </button>
       <nav className={classes.nav}>
         {this.state.navs.map(({text,path}) => (
-          <Link to={path} className={classes.navItem}>
+          <Link key={text} to={path} className={classes.navItem}>
             {text}
           </Link>
         ))}
@@ -60,14 +61,29 @@ class Header extends Component {
     if(!this.state.shownNav) {
       menu = null;
     }
+    let link = (
+      <Link to="/message" className={classes.message}>
+        <EnvelopeIcon className={iconClasses.join(' ')}/>
+      </Link>
+    );
+    if(noMessage) {
+      link = null;
+    }
+    else if(admin) {
+      link = (
+        <Link to="/logout" className={classes.message}>
+          <LogoutIcon className={iconClasses.join(' ')}/>
+        </Link>
+      );
+    }
     return (
       <header className={classes.container}>
-        {!this.state.shownNav && <button className={classes.menu} onClick={this.toggleMenuHandler}>
-          <MenuIcon className={iconClasses.join(' ')}/>
-        </button>}
-        <Link to="/message" className={classes.message}>
-          <EnvelopeIcon className={iconClasses.join(' ')}/>
-        </Link>
+        <div className={classes.links}>
+          {<button className={[classes.menu,this.state.shownNav ? classes.hidden : ''].join(' ')} onClick={this.toggleMenuHandler}>
+            <MenuIcon className={iconClasses.join(' ')}/>
+          </button>}
+          {link}
+        </div>
         {menu}
       </header>
     )

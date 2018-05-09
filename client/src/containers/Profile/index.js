@@ -1,29 +1,51 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import {fetchSkills,fetchContacts} from '../../actions';
 
 import Layout from '../../components/Layout';
 import UserInfo from '../../components/UserInfo';
 import Skills from '../../components/Skills';
+import Spinner from '../../components/UI/Spinner';
 
 class Profile extends Component {
+  componentDidMount() {
+    this.props.onFetchSkills();
+    this.props.onFetchContacts();
+  }
   downloadResumeHandler = () => {
 
   };
   render() {
+    const {profile,skills} = this.props;
+    if(!profile || !skills) {
+      return <Spinner size={12} center/>;
+    }
     return (
       <Layout>
         <UserInfo
           downloadResume={this.downloadResumeHandler}
-          image="photo.jpg"
-          name="Alex Ostapiuk"
-          profession="Front-end developer"
-          story="Ipsum per taciti ut arcu mus curabitur sociosqu, dui quam Fringilla cubilia porta mus sociosqu. Ultrices, placerat. Lacinia dui montes suscipit. Porttitor hymenaeos in adipiscing sociosqu tempus. Dictum aliquam fames eget ultrices nullam fringilla ullamcorper mus ridiculus leo. Aliquam habitasse viverra ridiculus.
-                   Cum lacus pharetra nonummy, facilisi id Etiam eget phasellus vivamus, praesent torquent litora aliquet elit dictumst. Orci cubilia erat torquent lacus cubilia netus.
-                   Posuere c onsequat tristique magnis cras. Feugiat donec vestibulum faucibus erat torquent nullam elementum praesent eu. Taciti hac eros auctor fusce turpis neque eu arcu sem dapibus. Semper volutpat id. Turpis consequat dui etiam nam, cum"
+          image={profile.get('photo')}
+          name={profile.get('name')}
+          profession={profile.get('profession')}
+          story={profile.get('story')}
         />
-        <Skills/>
+        <Skills
+          skills={skills}
+        />
       </Layout>
     );
   }
 }
 
-export default Profile;
+const mapStateToProps = ({profile,skills}) => ({
+  profile: profile.get('data'),
+  skills: skills.get('list')
+});
+
+const mapDispatchToProps = dispatch => ({
+  onFetchSkills: () => dispatch(fetchSkills()),
+  onFetchContacts: () => dispatch(fetchContacts())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Profile);

@@ -1,7 +1,17 @@
 @import '../../styles/vars'
 @import '../../styles/smart-grid'
 
-@keyframes showImage
+.links
+  position: absolute
+  animation: showLinks .8s forwards
+  left: 0
+  top: 0
+  width: 100%
+  padding: 20px
+  display: flex
+  justify-content: space-between
+
+@keyframes showLinks
   from
     transform: translateY(-500px)
   to
@@ -10,20 +20,11 @@
 .menu
   background: none
   border: none
-  position: absolute
-  left: 20px
-  top: 20px
   cursor: pointer
-  animation: showImage .8s forwards
 
-.message
-  position: absolute
-  right: 20px
-  top: 20px
-  animation: showImage .8s forwards
 
 .icon
-  width: 50px
+  width: 40px
   fill: $black
   transition: all .5s ease
   +sm-block
@@ -94,3 +95,6 @@
   margin-bottom: 5px
   &:hover
     border-color: #ffffff
+
+.hidden
+  opacity: 0

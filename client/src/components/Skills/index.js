@@ -4,34 +4,29 @@ import classes from  './index.sass';
 
 import Title from '../UI/Title';
 import Skill from '../Skill';
+import Panel from '../UI/Panel';
+import Subtitle from '../UI/Subtitle';
 
 const skills = ({skills}) => (
   <section className={classes.container}>
-    <Title>Skills</Title>
-    <ul className={classes.sectionList}>
-      <div className={classes.section}>
-        <h3 className={classes.title}>Front-end</h3>
-        <ul>
-          <Skill
-            name="HTML5"
-            value="10"
-          />
-        </ul>
-      </div>
-      <div className={classes.section}>
-        <h3 className={classes.title}>Front-end</h3>
-        <ul className={classes.skillsList}>
-          <Skill
-            name="HTML5"
-            value="10"
-          />
-          <Skill
-            name="CSS3"
-            value="50"
-          />
-        </ul>
-      </div>
-    </ul>
+    <Panel animated={false}>
+      <Title>Skills</Title>
+      <ul className={classes.sectionList}>
+        {skills.map(category => (
+          <li className={classes.section}>
+            <Subtitle offset>{category.get('name')}</Subtitle>
+            <ul>
+              {category.get('skills').map(skill => (
+                <Skill
+                  name={skill.get('name')}
+                  value={skill.get('value')}
+                />
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </Panel>
   </section>
 );
 
