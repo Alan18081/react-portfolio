@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-// import {Field} from 'redi'
 import {CSSTransition} from 'react-transition-group';
 
 import classes from './index.sass';
-import {validateSkill} from '../../utils/validate';
 
 import SaveIcon from '../../assets/icons/floppy-disk.svg';
 import CloseIcon from '../../assets/icons/cancel.svg';
-import Input from '../UI/Input';
 
 class AddItem extends Component {
   state = {

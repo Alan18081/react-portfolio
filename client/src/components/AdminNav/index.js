@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import {CSSTransition} from 'react-transition-group';
 import Navbar from 'react-responsive-navbar';
 
 import classes from './index.sass';

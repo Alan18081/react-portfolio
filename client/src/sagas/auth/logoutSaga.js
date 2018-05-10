@@ -5,8 +5,7 @@ import {
 } from '../../actions/types';
 import {
   logoutSuccess,
-  setServerError,
-  removeServerError
+  setServerError
 } from '../../actions/index';
 
 export function* logoutSaga() {

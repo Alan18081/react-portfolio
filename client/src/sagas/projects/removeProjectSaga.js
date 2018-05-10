@@ -1,6 +1,5 @@
 import {call,put,takeLatest} from 'redux-saga/effects';
 import axios from 'axios';
-import createFormData from 'object-to-formdata';
 import {
   REMOVE_PROJECT
 } from '../../actions/types';

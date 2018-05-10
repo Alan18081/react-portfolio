@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {fetchAdmin,fetchTechs,fetchProjects} from '../../actions';
+import {fetchAdmin,fetchTechs} from '../../actions';
 
 import Layout from '../../components/Layout';
 import Spinner from '../../components/UI/Spinner';

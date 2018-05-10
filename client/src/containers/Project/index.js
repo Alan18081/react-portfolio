@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Slider from 'react-slick';
-import {List,fromJS} from 'immutable';
+import {List} from 'immutable';
 
 import classes from './index.sass';
 import {setActiveProject,fetchProjects} from '../../actions';

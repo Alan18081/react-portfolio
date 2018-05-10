@@ -23,7 +23,6 @@ const newProject = (props) => {
   const {
     handleSubmit,
     change,
-    reset,
     array,
     onSubmitProject,
     edit,
