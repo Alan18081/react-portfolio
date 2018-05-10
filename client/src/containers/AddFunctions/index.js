@@ -54,6 +54,7 @@ class AddFunctions extends Component {
         <TransitionGroup>
           {this.state.functions.map((func,i) => (
             <CSSTransition
+              key={i}
               timeout={300}
               mountOnEnter
               unmountOnExit

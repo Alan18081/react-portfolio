@@ -14,14 +14,16 @@ class SelectTechnologies extends Component {
       this.setState({
         selected: this.props.selected
       });
+      if(this.props.selected.length) {
+        this.props.set(this.props.selected);
+      }
     }
   }
   toggleTechHandler = (item) => {
     const selectedItems = this.state.selected;
     const selected = selectedItems.find(index => item === index);
-    console.log(selected);
     if(selected) {
-      const index = this.props.selected.findIndex(tech => tech === item);
+      const index = selectedItems.findIndex(tech => tech === item);
       selectedItems.splice(index,1);
       this.props.remove(index);
     }

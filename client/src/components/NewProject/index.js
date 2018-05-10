@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {reduxForm,Field} from 'redux-form';
 
-import classes from './index.sass';
 import {validateProject} from '../../utils/validate';
 import {createProject} from '../../actions';
 
@@ -18,6 +17,7 @@ import Button from '../UI/Button';
 import SelectTechnologies from '../../containers/SelectTechnologies';
 import LoadImages from '../../containers/LoadImages';
 import LoadMainImage from '../../containers/LoadMainImage';
+import Controls from '../../components/UI/Controls';
 
 const newProject = (props) => {
   const {
@@ -34,6 +34,9 @@ const newProject = (props) => {
   };
   const addMainImage = (file) => {
     change('mainImage',file);
+  };
+  const removeMainImage = () => {
+    change('mainImage',null);
   };
   const removeFunction = (i) => {
     array.splice('functions',i);
@@ -66,6 +69,7 @@ const newProject = (props) => {
           />
           <LoadMainImage
             add={addMainImage}
+            remove={removeMainImage}
           />
           <SelectTechnologies
             select={selectTechnology}
@@ -74,12 +78,12 @@ const newProject = (props) => {
           <LoadImages
             load={loadImages}
           />
-          <div className={classes.controls}>
+          <Controls loading={loading}>
             <Button disabled={loading}>Create project</Button>
             <Link to="/admin/projects">
               <Button plain offset>Cancel</Button>
             </Link>
-          </div>
+          </Controls>
         </form>
       </Panel>
     </Admin>

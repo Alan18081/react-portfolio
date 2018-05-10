@@ -43,6 +43,7 @@
     "is-valid-email": "0.0.2",
     "jest": "20.0.4",
     "materialize-css": "^0.100.2",
+    "mime-types": "^2.1.18",
     "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "object-to-formdata": "^1.4.3",

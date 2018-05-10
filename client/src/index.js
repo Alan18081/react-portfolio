@@ -1,4 +1,3 @@
-import 'devicon/devicon.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

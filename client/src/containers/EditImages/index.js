@@ -21,12 +21,14 @@ class EditImages extends Component {
   }
   loadImages = async (event) => {
     const files = event.target.files;
+    const images = this.state.images;
     for(let file of files) {
       this.props.onAddImage(this.props.id,file);
-      this.setState({
-        images: this.state.images.push(file.name)
-      });
+      images.push(file.name);
     }
+    this.setState({
+      images
+    });
   };
   removeImage = (img) => {
     this.props.onRemoveImage(this.props.id,img);
@@ -63,7 +65,7 @@ class EditImages extends Component {
                 <div className={classes.overlay}>
                   <DeleteIcon className={classes.icon}/>
                 </div>
-                <img src={`/uploads/${img}`} alt="Project"/>
+                <img src={`/uploads/projects/${img}`} alt="Project"/>
               </div>
             </CSSTransition>
           ))}

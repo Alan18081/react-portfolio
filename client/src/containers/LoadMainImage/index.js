@@ -27,15 +27,19 @@ class LoadMainImage extends Component {
     this.input.click();
   };
   render() {
-    console.log(this.props.image);
+    const {image} = this.props;
     return (
       <div className={classes.container}>
         <SectionHeader
           clicked={this.triggerFileInput}
         >Main image</SectionHeader>
-        {this.state.image && <div className={classes.image} onClick={this.removeImage}>
-          <img src={this.state.image || `/uploads/${this.props.image}`} alt="Project"/>
-        </div>}
+        {this.props.image || this.state.image
+          ?
+            <div className={classes.image} onClick={this.removeImage}>
+              <img src={this.state.image || `/uploads/projects/${image}`} alt="Project"/>
+            </div>
+          : null
+        }
         <input
           className={classes.input}
           ref={input => this.input = input}

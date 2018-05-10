@@ -1,7 +1,5 @@
 const Project = require('../models/Project');
-const {saveImage,removeImage} = require('../helpers/images');
-const path = require('path');
-const fs = require('fs');
+const removeProjectFile = require('../helpers/removeProjectFiles');
 const upload = require('../helpers/multer')('projects');
 
 
@@ -25,7 +23,7 @@ module.exports = app => {
         technologies: [],
         ...req.body
       });
-      if(req.files.images) {
+      if(req.files['images[]']) {
         for(let file of req.files['images[]']) {
           newProject.images.push(file.filename);
         }
@@ -45,18 +43,22 @@ module.exports = app => {
 
   app.put('/api/projects/:id', upload.single('mainImage'), async (req,res) => {
     try {
-      console.log(req.file);
       const {id} = req.params;
       const project = await Project.findOneAndUpdate(
         {
           _id: id
         },
         {
-          ...req.body,
-          mainImage: req.file.filename
+          ...req.body
         },
         {new: true}
       );
+      if(req.file) {
+        const oldMainImage = project.mainImage;
+        removeProjectFile(oldMainImage);
+        project.mainImage = req.file.filename;
+        await project.save();
+      }
       res.send(project);
     }
     catch(error) {
@@ -68,6 +70,9 @@ module.exports = app => {
   app.delete('/api/projects/:id', async (req,res) => {
     try {
       const {id} = req.params;
+      const project = await Project.findOne({_id: id});
+      removeProjectFile(project.mainImage);
+      project.images.forEach(removeProjectFile);
       await Project.deleteOne({_id:id});
       res.sendStatus(200);
     }
@@ -100,7 +105,7 @@ module.exports = app => {
   app.delete('/api/projects/:id/:imageName', async (req,res) => {
     try {
       const {id,imageName} = req.params;
-      removeImage(imageName);
+      removeProjectFile(imageName);
       const project = await Project.findOneAndUpdate(
         {
           _id: id

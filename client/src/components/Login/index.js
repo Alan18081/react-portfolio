@@ -41,7 +41,7 @@ const Login = ({handleSubmit,onLogin,user,loading}) => (
 );
 
 const mapStateToProps = ({auth}) => ({
-  user: auth.get('user'),
+  user: auth.get('admin'),
   loading: auth.get('loginLoading')
 });
 

@@ -52,7 +52,7 @@ class AdminProfile extends Component {
   render() {
     const {handleSubmit,initialValues,loading} = this.props;
     let content = <Spinner size={12} center/>;
-    if(!initialValues) {
+    if(initialValues) {
       content = <Panel>
         <form onSubmit={handleSubmit(this.props.onEditProfile)}>
           <Field name="name" component={Input} placeholder="Your name"/>

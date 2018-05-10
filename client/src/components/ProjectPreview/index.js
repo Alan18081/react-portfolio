@@ -11,7 +11,7 @@ const projectPreview = ({image,name,showSlide}) => (
         <LoupeIcon className={classes.icon}/>
         <h5 className={classes.name}>{name}</h5>
       </div>
-      <img className={classes.image} src={`/uploads/projects/${name}/${image}`} alt="Project"/>
+      <img className={classes.image} src={`/uploads/projects/${image}`} alt="Project"/>
     </div>
   </div>
 );

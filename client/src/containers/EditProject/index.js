@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {reduxForm,Field} from 'redux-form';
 
-import classes from './index.sass';
 import {validateProject} from '../../utils/validate';
 import {editProject,setActiveProject,fetchProjects} from '../../actions/index';
 import {getActiveProject} from '../../selectors';
@@ -20,12 +19,11 @@ import SelectTechnologies from '../SelectTechnologies/index';
 import EditImages from '../EditImages/index';
 import LoadMainImage from '../LoadMainImage/index';
 import Spinner from '../../components/UI/Spinner';
+import Controls from '../../components/UI/Controls';
 
 class EditProject extends Component {
   componentDidMount() {
-    if(this.props.projects.size === 0) {
-      this.props.onFetchProjects();
-    }
+    this.props.onFetchProjects();
     this.props.onSetActiveProject(this.props.match.params.id);
   }
   addFunction = (func) => {
@@ -36,6 +34,9 @@ class EditProject extends Component {
   };
   removeFunction = (index) => {
     this.props.array.remove('functions', index);
+  };
+  setTechnologies = (techs) => {
+    this.props.change('technologies',techs);
   };
   selectTechnology = (tech) => {
     this.props.array.push('technologies', tech);
@@ -70,24 +71,27 @@ class EditProject extends Component {
               />
               <LoadMainImage
                 image={initialValues.mainImage}
+                name={initialValues.projectName}
                 add={this.addMainImage}
               />
               <SelectTechnologies
                 edit
+                set={this.setTechnologies}
                 selected={initialValues.technologies.map(tech => tech._id)}
                 select={this.selectTechnology}
                 remove={this.removeTechnology}
               />
               <EditImages
+                name={initialValues.projectName}
                 id={initialValues._id}
                 images={initialValues.images}
               />
-              <div className={classes.controls}>
+              <Controls loading={loading}>
                 <Button disabled={loading}>Save project</Button>
                 <Link to="/admin/projects">
                   <Button plain offset>Cancel</Button>
                 </Link>
-              </div>
+              </Controls>
             </form>
           </Panel>
         </Admin>

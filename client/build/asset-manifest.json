@@ -1,8 +1,8 @@
 {
-  "main.css": "main.eca550de.css",
-  "main.css.map": "main.eca550de.css.map",
-  "main.js": "static/js/main.54724129.js",
-  "main.js.map": "static/js/main.54724129.js.map",
+  "main.css": "main.000c6458.css",
+  "main.css.map": "main.000c6458.css.map",
+  "main.js": "static/js/main.697a5871.js",
+  "main.js.map": "static/js/main.697a5871.js.map",
   "static\\media\\OpenSansBold.eot": "static/media/OpenSansBold.33696c16.eot",
   "static\\media\\OpenSansBold.ttf": "static/media/OpenSansBold.50145685.ttf",
   "static\\media\\OpenSansBold.woff": "static/media/OpenSansBold.9c335864.woff",
@@ -11,8 +11,5 @@
   "static\\media\\OpenSansLight.woff": "static/media/OpenSansLight.5193f01d.woff",
   "static\\media\\OpenSansRegular.eot": "static/media/OpenSansRegular.06a04537.eot",
   "static\\media\\OpenSansRegular.ttf": "static/media/OpenSansRegular.629a55a7.ttf",
-  "static\\media\\OpenSansRegular.woff": "static/media/OpenSansRegular.10bb6c19.woff",
-  "static\\media\\devicon.eot": "static/media/devicon.478292ee.eot",
-  "static\\media\\devicon.ttf?-hdf3wh": "static/media/devicon.b6ba8105.ttf",
-  "static\\media\\devicon.woff?-hdf3wh": "static/media/devicon.fd2d16f2.woff"
+  "static\\media\\OpenSansRegular.woff": "static/media/OpenSansRegular.10bb6c19.woff"
 }

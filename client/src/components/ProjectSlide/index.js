@@ -13,7 +13,7 @@ const projectSlide = ({id,name,image,technologies}) => (
       <LoupeIcon className={classes.moreIcon}/>
       Узнать больше
     </div>
-    <img className={classes.image} src={`/uploads/projects/${name}/${image}`} alt={name}/>
+    <img className={classes.image} src={`/uploads/projects/${image}`} alt={name}/>
     <div className={classes.caption}>
       <Title white>{name}</Title>
       <ul className={classes.techList}>

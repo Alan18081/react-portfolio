@@ -5,7 +5,6 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const path = require('path');
-const formData = require('express-form-data');
 const validator = require('express-validator');
 
 mongoose.connect(keys.mongoURI);
@@ -21,12 +20,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(formData.parse({
-//   autoFiles: true
-// }));
 app.use(validator());
-// app.use(formData.format());
-// app.use(formData.stream());
 
 require('./services/passport');
 
@@ -39,8 +33,9 @@ require('./routes/emails')(app);
 require('./routes/contacts')(app);
 
 if(process.env.NODE_ENV === 'production') {
+  console.log('Hey');
   app.use(express.static(path.join(__dirname,'client','build')));
-  app.get('*', (req,res) => {
+  app.get('/*', (req,res) => {
     res.sendFile(path.join(__dirname,'client','build','main.html'));
   });
 }

@@ -59,7 +59,7 @@ class Project extends Component {
             >
               {images.map(image => (
                 <div className={classes.imageItem}>
-                  <img src={`/uploads/projects/${project.get('projectName')}/${image}`} alt="Project"/>
+                  <img src={`/uploads/projects/${image}`} alt="Project"/>
                 </div>
               ))}
             </Slider>
