@@ -5,12 +5,13 @@ const ProjectSchema = new Schema({
   projectName: String,
   appType: {type: String,default: 'Web-application'},
   link: String,
-  mainImage: String,
+  mainImageUrl: String,
+  mainImageId: String,
   functions: [String],
   technologies: [{type: Schema.Types.ObjectId, ref: 'Tech'}],
   images: [{
     url: String,
-    id: String
+    publicId: String
   }]
 });
 

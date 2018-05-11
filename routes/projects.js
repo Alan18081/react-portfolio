@@ -1,7 +1,7 @@
 const Project = require('../models/Project');
 const removeProjectFile = require('../helpers/removeProjectFiles');
-const upload = require('../helpers/multer')('projects');
-
+const upload = require('../helpers/multer')();
+const {uploadImage,removeImage} = require('../helpers/cloudinary');
 
 module.exports = app => {
 
@@ -25,17 +25,20 @@ module.exports = app => {
       });
       if(req.files['images[]']) {
         for(let file of req.files['images[]']) {
-          newProject.images.push(file.filename);
+          const {url,public_id} = await uploadImage(file.path);
+          newProject.images.push({
+            url,
+            publicId: public_id
+          });
         }
       }
       if(req.files.mainImage) {
-        newProject.mainImage = req.files.mainImage[0].filename;
+        const {url,public_id} = await uploadImage(req.files.mainImage[0].path);
+        newProject.mainImageUrl = url;
+        newProject.mainImageId = public_id;
       }
       await newProject.save();
-      const project = await Project.findOne({
-        _id: newProject._id
-      }).populate('technologies');
-      res.send(project);
+      res.send(newProject);
     }
     catch(error) {
       console.log('Error',error);
@@ -56,9 +59,10 @@ module.exports = app => {
         {new: true}
       );
       if(req.file) {
-        const oldMainImage = project.mainImage;
-        removeProjectFile(oldMainImage);
-        project.mainImage = req.file.filename;
+        await removeImage(project.mainImageId);
+        const {url,public_id} = await uploadImage(req.file.path);
+        project.mainImageUrl = url;
+        project.mainImageId = public_id;
         await project.save();
       }
       res.send(project);
@@ -74,10 +78,12 @@ module.exports = app => {
       const {id} = req.params;
       const project = await Project.findOne({_id: id});
       if(project.mainImage) {
-        removeProjectFile(project.mainImage);
+        await removeImage(project.mainImageId);
       }
       if(project.images.length) {
-        project.images.forEach(removeProjectFile);
+        project.images.forEach(async ({publicId}) => {
+          await removeImage(publicId);
+        });
       }
       await Project.deleteOne({_id:id});
       res.sendStatus(200);
@@ -91,12 +97,16 @@ module.exports = app => {
   app.post('/api/projects/:id/images',upload.single('image'),async (req,res) => {
     try {
       const {id} = req.params;
+      const {url,public_id} = await uploadImage(req.file.path);
       const project = await Project.findOneAndUpdate(
         {
           _id: id
         },
         {
-          $push: {images: req.file.filename}
+          $push: {images: {
+            url,
+            publicId: public_id
+          }}
         },
         {new: true}
       );
@@ -108,16 +118,16 @@ module.exports = app => {
     }
   });
 
-  app.delete('/api/projects/:id/:imageName', async (req,res) => {
+  app.delete('/api/projects/:id/:imageId', async (req,res) => {
     try {
-      const {id,imageName} = req.params;
-      removeProjectFile(imageName);
+      const {id,imageId} = req.params;
+      await removeImage(imageId);
       const project = await Project.findOneAndUpdate(
         {
           _id: id
         },
         {
-          $pull: {images: imageName}
+          $pull: {images: {publicId: imageId} }
         },
         {new: true}
       );

@@ -14,7 +14,7 @@ const mainPage = ({profile}) => (
     <UserBlock
       name={profile.get('name')}
       profession={profile.get('profession')}
-      avatar={profile.get('avatar')}
+      avatar={profile.get('avatarUrl')}
     />
   </div>
 );

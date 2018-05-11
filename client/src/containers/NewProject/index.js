@@ -48,11 +48,12 @@ class NewProject extends Component {
     const {
       handleSubmit,
       onCreateProject,
-      loading
+      loading,
+      done
     } = this.props;
     return (
       <Admin>
-        {<Redirect to="/admin/projects"/>}
+        {done && <Redirect to="/admin/projects"/>}
         <Title Icon={AddFileIcon}>
           New project
         </Title>

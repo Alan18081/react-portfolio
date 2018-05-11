@@ -25,7 +25,7 @@ class Profile extends Component {
       <Layout>
         <UserInfo
           downloadResume={this.downloadResumeHandler}
-          image={profile.get('photo')}
+          image={profile.get('photoUrl')}
           name={profile.get('name')}
           profession={profile.get('profession')}
           story={profile.get('story')}

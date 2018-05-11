@@ -47,12 +47,14 @@ export default (state = initialState,{type,payload}) => {
     case EDIT_PROJECT_SUCCESS:
       return state.merge({
         imageLoading: false,
-        loading: false,
-        list: state.get('list').update(
-          state.get('list').find(project => project.get('_id') === payload._id),
-          project => fromJS(payload)
+        loading: false
+      }).update(
+        'list',
+        list => list.update(
+         list.findIndex(project => project.get('_id') === payload._id),
+         project => fromJS(payload)
         )
-      });
+      );
     case FETCH_PROJECTS_SUCCESS:
       return state.set(
         'list',

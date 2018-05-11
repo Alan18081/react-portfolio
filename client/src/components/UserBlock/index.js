@@ -8,7 +8,7 @@ import Button from '../UI/Button';
 const userBlock = ({name,profession,avatar}) => (
   <div className={classes.container}>
     <div className={classes.avatar}>
-      <img src={`/uploads/profile/${avatar}`} alt="Avatar"/>
+      <img src={avatar} alt="Avatar"/>
     </div>
     <div className={classes.caption}>
       <h1 className={classes.name}>{name}</h1>

@@ -72,8 +72,7 @@ class EditProject extends Component {
                 remove={this.removeFunction}
               />
               <LoadMainImage
-                image={initialValues.mainImage}
-                name={initialValues.projectName}
+                image={initialValues.mainImageUrl}
                 add={this.addMainImage}
               />
               <SelectTechnologies
@@ -84,9 +83,7 @@ class EditProject extends Component {
                 remove={this.removeTechnology}
               />
               <EditImages
-                name={initialValues.projectName}
-                id={initialValues._id}
-                images={initialValues.images}
+                projectId={initialValues._id}
               />
               <Controls loading={loading}>
                 <Button disabled={loading}>Save project</Button>
@@ -120,6 +117,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps,mapDispatchToProps)(
   reduxForm({
     form: 'editProject',
+    enableReinitialize: true,
     validate: validateProject
   })(EditProject)
 );

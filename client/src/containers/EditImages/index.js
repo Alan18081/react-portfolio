@@ -4,6 +4,7 @@ import {CSSTransition,TransitionGroup} from 'react-transition-group';
 
 import classes from './index.sass';
 import {addImage,removeImage} from '../../actions';
+import {getActiveProject} from '../../selectors';
 
 import SectionHeader from '../../components/SectionHeader';
 import Spinner from '../../components/UI/Spinner';
@@ -11,48 +12,29 @@ import Spinner from '../../components/UI/Spinner';
 import DeleteIcon from '../../assets/icons/delete-button.svg';
 
 class EditImages extends Component {
-  state = {
-    images: []
-  };
-  componentDidMount() {
-    this.setState({
-      images: this.props.images
-    });
-  }
   loadImages = async (event) => {
     const files = event.target.files;
-    const images = this.state.images;
     for(let file of files) {
-      this.props.onAddImage(this.props.id,file);
-      images.push(file.name);
+      this.props.onAddImage(this.props.projectId,file);
     }
-    this.setState({
-      images
-    });
-  };
-  removeImage = (img) => {
-    this.props.onRemoveImage(this.props.id,img);
-    const images = this.state.images.filter(image => image !== img);
-    this.setState({
-      images
-    });
   };
   triggerFileInput = (e) => {
     this.input.click();
   };
   render() {
+    const {images,loading,projectId,onRemoveImage} = this.props;
     return (
       <div className={classes.container}>
         <div className={classes.header}>
           <SectionHeader
             clicked={this.triggerFileInput}
           >Images</SectionHeader>
-          {this.props.loading && <Spinner size={3}/>}
+          {loading && <Spinner size={3}/>}
         </div>
         <TransitionGroup className={classes.list}>
-          {this.state.images.map(img => (
+          {images.map(img => (
             <CSSTransition
-              key={img}
+              key={img.get('_id')}
               timeout={300}
               classNames={{
                 enter: classes.imageEnter,
@@ -61,11 +43,14 @@ class EditImages extends Component {
                 exitActive: classes.imageExitActive
               }}
             >
-              <div className={classes.image} onClick={() => this.removeImage(img)}>
+              <div
+                className={classes.image}
+                onClick={() => onRemoveImage(projectId,img.get('publicId'))}
+              >
                 <div className={classes.overlay}>
                   <DeleteIcon className={classes.icon}/>
                 </div>
-                <img src={`/uploads/projects/${img}`} alt="Project"/>
+                <img src={img.get('url')} alt="Project"/>
               </div>
             </CSSTransition>
           ))}
@@ -82,7 +67,8 @@ class EditImages extends Component {
 }
 
 const mapStateToProps = ({projects}) => ({
-  loading: projects.get('imageLoading')
+  loading: projects.get('imageLoading'),
+  images: getActiveProject(projects).get('images')
 });
 
 const mapDispatchToProps = dispatch => ({
