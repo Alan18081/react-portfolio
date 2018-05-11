@@ -37,7 +37,7 @@ class AdminSkills extends Component {
     })
   };
   render() {
-    const {skills,onSaveSkills,onResetSkills,onAddCategory} = this.props;
+    const {skills,onSaveSkills,onResetSkills,onAddCategory,loading} = this.props;
     let content = <Spinner size={12}/>;
     if(skills) {
       content = <Panel>
@@ -63,7 +63,7 @@ class AdminSkills extends Component {
           add={onAddCategory}
           close={this.toggleAddingCategory}
         />
-        <Controls>
+        <Controls loading={loading}>
           <Button clicked={onSaveSkills}>Save skills</Button>
           <Button plain offset clicked={onResetSkills}>Set old values</Button>
         </Controls>

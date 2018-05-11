@@ -15,7 +15,7 @@ const skills = ({skills}) => (
         {skills.map(category => (
           <li className={classes.section}>
             <Subtitle offset>{category.get('name')}</Subtitle>
-            <ul>
+            <ul className={classes.skillsList}>
               {category.get('skills').map(skill => (
                 <Skill
                   name={skill.get('name')}
