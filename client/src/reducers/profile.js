@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = fromJS({
-  data: fromJS({}),
+  data: null,
   loading: false
 });
 

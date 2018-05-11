@@ -10,7 +10,7 @@ import GithubIcon from '../../assets/icons/github-logo.svg';
 const userInfo = ({image,name,profession,story,github}) => (
   <section className={classes.container}>
     <div className={classes.image}>
-      <img src={`/uploads/profile/${image}`} alt="Author"/>
+      <img src={image} alt="Author"/>
     </div>
     <div className={classes.info}>
       <Title name>{name}</Title>

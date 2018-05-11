@@ -8,8 +8,10 @@ const UserSchema = new Schema({
   name: {type: String, default: 'Alex Ostapuik'},
   profession: {type: String, default: 'Front-end developer'},
   story: String,
-  avatar: {type: String, default: 'avatar.jpg'},
-  photo: {type: String, default: 'photo.jpg'},
+  avatarUrl: String,
+  avatarId: String,
+  photoUrl: String,
+  photoId: String,
   resetPasswordToken: String
 });
 

@@ -1,5 +1,7 @@
 const User = require('../models/User');
-const upload = require('../helpers/multer')('profile');
+const path = require('path');
+const upload = require('../helpers/multer')();
+const {uploadImage,removeImage} = require('../helpers/cloudinary');
 
 module.exports = app => {
 
@@ -11,8 +13,8 @@ module.exports = app => {
           name: 1,
           profession: 1,
           story: 1,
-          avatar: 1,
-          photo: 1
+          avatarUrl: 1,
+          photoUrl: 1
         }
       );
       res.send(profile);
@@ -23,19 +25,26 @@ module.exports = app => {
     }
   });
 
-  app.put('/api/profile',upload.fields([{name: 'avatar',maxCount: 1},{name: 'photo',maxCount: 1}]),async (req,res) => {
+  app.put('/api/profile',upload.any(),async (req,res) => {
     try {
-      const profile = {
-        ...req.body
-      };
-      console.log(req.files);
-      for(let name in req.files) {
-        const file = req.files[name][0];
-        profile[name] = file.filename;
+      const newProfile = req.body;
+      const profile = await User.findOne({});
+      if(profile.avatarId) {
+        const res = await removeImage(profile.avatarId);
+        console.log(res);
+      }
+      if(profile.photoId) {
+        const res = await removeImage(profile.photoId);
+        console.log(res);
+      }
+      for(let file of req.files) {
+        const {url,public_id} = await uploadImage(file.path);
+        newProfile[`${file.fieldname}Url`] = url;
+        newProfile[`${file.fieldname}Id`] = public_id;
       }
       const user = await User.findOneAndUpdate(
         { _id: req.user._id },
-        profile,
+        newProfile,
         {new: true}
       );
       res.send(user);

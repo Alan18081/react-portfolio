@@ -8,7 +8,10 @@ const ProjectSchema = new Schema({
   mainImage: String,
   functions: [String],
   technologies: [{type: Schema.Types.ObjectId, ref: 'Tech'}],
-  images: [String]
+  images: [{
+    url: String,
+    id: String
+  }]
 });
 
 module.exports = mongoose.model('Project',ProjectSchema);

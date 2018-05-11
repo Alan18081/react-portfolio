@@ -6,6 +6,7 @@ const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const path = require('path');
 const validator = require('express-validator');
+const formData = require('express-form-data');
 
 mongoose.connect(keys.mongoURI);
 

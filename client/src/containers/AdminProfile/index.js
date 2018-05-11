@@ -52,6 +52,7 @@ class AdminProfile extends Component {
   render() {
     const {handleSubmit,initialValues,loading} = this.props;
     let content = <Spinner size={12} center/>;
+    console.log(initialValues);
     if(initialValues) {
       content = <Panel>
         <form onSubmit={handleSubmit(this.props.onEditProfile)}>
@@ -62,7 +63,7 @@ class AdminProfile extends Component {
             folder="profile"
             src={this.state.avatarSrc}
             changeImage={this.changeAvatarHandler}
-            defaultSrc={initialValues.avatar}
+            defaultSrc={initialValues.avatarUrl}
           >
             Load avatar
           </ImageField>
@@ -70,7 +71,7 @@ class AdminProfile extends Component {
             folder="profile"
             src={this.state.photoSrc}
             changeImage={this.changePhotoHandler}
-            defaultSrc={initialValues.photo}
+            defaultSrc={initialValues.photoUrl}
           >
             Load main photo
           </ImageField>
@@ -92,7 +93,7 @@ class AdminProfile extends Component {
 
 const mapStateToProps = ({profile}) => ({
   loading: profile.get('loading'),
-  initialValues: profile.get('data').toJS()
+  initialValues: profile.get('data') && profile.get('data').toJS()
 });
 
 const mapDispatchToProps = dispatch => ({

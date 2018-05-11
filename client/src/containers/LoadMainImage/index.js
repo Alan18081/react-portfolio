@@ -36,7 +36,7 @@ class LoadMainImage extends Component {
         {this.props.image || this.state.image
           ?
             <div className={classes.image} onClick={this.removeImage}>
-              <img src={this.state.image || `/uploads/projects/${image}`} alt="Project"/>
+              <img src={this.state.image || image} alt="Project"/>
             </div>
           : null
         }

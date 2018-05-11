@@ -3,18 +3,12 @@ const {staticPath} = require('../config/keys');
 const multer = require('multer');
 const fs = require('fs');
 const mime = require('mime-types');
-
-module.exports = (folder) => {
+//
+module.exports = () => {
   const storage = multer.diskStorage({
-    destination: (req,file,cb) => {
-        return cb(null,path.join(staticPath,folder));
-    },
+    destination: staticPath,
     filename: (req,file,cb) => {
-      let filename = file.originalname;
-      if(folder === 'profile') {
-        filename = `${file.fieldname}.${mime.extension(file.mimetype)}`;
-      }
-      return cb(null,Date.now() + filename);
+      return cb(null,file.originalname);
     }
   });
   return multer({storage});
