@@ -28,16 +28,19 @@ const adminProject = ({edit,remove,project}) => (
           <Link to={`/admin/editProject/${project.get('_id')}`} className={classes.controlsBtn} onClick={edit}>
             <EditIcon className={classes.controlsIcon}/>
           </Link>
-          <button className={classes.controlsBtn} onClick={() => remove(project.get('_id'))}>
+          <button className={classes.controlsBtn} onClick={() => remove(project.get('projectName'),project.get('_id'))}>
             <DeleteIcon className={classes.controlsIcon}/>
           </button>
         </div>
       </div>
     </div>
     <div className={classes.content}>
-        <Functions
-          list={project.get('functions')}
-        />
+        {project.get('functions').size > 0
+          ? <Functions
+            list={project.get('functions')}
+          />
+          : null
+        }
         <div className={classes.tech}>
           {project.get('technologies').map(tech => (
             <div key={tech.get('name')} className={classes.techItem}>

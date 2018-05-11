@@ -78,6 +78,8 @@ export {
   fetchProjects,
   fetchProjectsSuccess,
   setActiveProject,
+  resetDone,
   removeProject,
+  removeProjectStart,
   removeProjectSuccess
 } from './projects';

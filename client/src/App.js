@@ -18,7 +18,7 @@ import AdminProfile from './containers/AdminProfile';
 import AdminSkills from './containers/AdminSkills';
 import AdminProjects from './components/AdminProjects';
 import AdminContacts from './components/AdminContacts';
-import NewProject from './components/NewProject';
+import NewProject from './containers/NewProject';
 import AdminDashboard from './containers/AdminDashboard';
 import Spinner from './components/UI/Spinner';
 import EditProject from './containers/EditProject';

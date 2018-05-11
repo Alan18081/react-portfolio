@@ -81,7 +81,7 @@ class Project extends Component {
               ))}
             </div>
             <div className={classes.controls}>
-              <a href="http://google.com" target="_blank">
+              <a href="http://google.com" rel="noopener noreferrer" target="_blank">
                 <Button>Show app</Button>
               </a>
               <Link to="/projects">

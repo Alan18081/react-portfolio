@@ -8,9 +8,15 @@ import {
   FETCH_PROJECTS,
   FETCH_PROJECTS_SUCCESS,
   SET_ACTIVE_PROJECT,
+  RESET_DONE,
   REMOVE_PROJECT,
+  REMOVE_PROJECT_START,
   REMOVE_PROJECT_SUCCESS
 } from '../actions/types';
+
+export const resetDone = () => ({
+  type: RESET_DONE
+});
 
 export const setActiveProject = id => ({
   type: SET_ACTIVE_PROJECT,
@@ -57,6 +63,10 @@ export const editProjectSuccess = (project) => ({
 export const removeProject = (id) => ({
   type: REMOVE_PROJECT,
   payload: id
+});
+
+export const removeProjectStart = () => ({
+  type: REMOVE_PROJECT_START
 });
 
 export const removeProjectSuccess = (id) => ({

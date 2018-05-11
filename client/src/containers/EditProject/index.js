@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import {reduxForm,Field} from 'redux-form';
 
 import {validateProject} from '../../utils/validate';
-import {editProject,setActiveProject,fetchProjects} from '../../actions/index';
+import {editProject,setActiveProject,fetchProjects,resetDone} from '../../actions/index';
 import {getActiveProject} from '../../selectors';
 
 import EditFileIcon from '../../assets/icons/edit_file.svg';
@@ -23,6 +23,7 @@ import Controls from '../../components/UI/Controls';
 
 class EditProject extends Component {
   componentDidMount() {
+    this.props.onResetDone();
     this.props.onFetchProjects();
     this.props.onSetActiveProject(this.props.match.params.id);
   }
@@ -55,6 +56,7 @@ class EditProject extends Component {
     if(initialValues) {
       content = (
         <Admin>
+          {this.props.done && <Redirect to="/admin/projects"/>}
           <Title Icon={EditFileIcon}>
             Edit Project
           </Title>
@@ -102,12 +104,14 @@ class EditProject extends Component {
 };
 
 const mapStateToProps = ({projects}) => ({
+  done: projects.get('done'),
   loading: projects.get('loading'),
   projects: projects.get('list'),
   initialValues: getActiveProject(projects) && getActiveProject(projects).toJS()
 });
 
 const mapDispatchToProps = dispatch => ({
+  onResetDone: () => dispatch(resetDone()),
   onSetActiveProject: (id) => dispatch(setActiveProject(id)),
   onSaveProject: (project) => dispatch(editProject(project)),
   onFetchProjects: () => dispatch(fetchProjects())

@@ -28,7 +28,9 @@ module.exports = app => {
           newProject.images.push(file.filename);
         }
       }
-      newProject.mainImage = req.files.mainImage[0].filename;
+      if(req.files.mainImage) {
+        newProject.mainImage = req.files.mainImage[0].filename;
+      }
       await newProject.save();
       const project = await Project.findOne({
         _id: newProject._id
@@ -71,8 +73,12 @@ module.exports = app => {
     try {
       const {id} = req.params;
       const project = await Project.findOne({_id: id});
-      removeProjectFile(project.mainImage);
-      project.images.forEach(removeProjectFile);
+      if(project.mainImage) {
+        removeProjectFile(project.mainImage);
+      }
+      if(project.images.length) {
+        project.images.forEach(removeProjectFile);
+      }
       await Project.deleteOne({_id:id});
       res.sendStatus(200);
     }

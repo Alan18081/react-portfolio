@@ -1,0 +1,44 @@
+@import '../../../styles/vars'
+
+.container
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background: rgba($black,.85)
+  animation: showBg .5s forwards
+  z-index: 300
+
+.content
+  position: absolute
+  left: 50%
+  animation: showModal .8s forwards
+  transform: translate(-50%,-50%)
+
+@keyframes showBg
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes showModal
+  from
+    top: -100%
+  to
+    top: 50%
+
+.close
+  cursor: pointer
+  position: absolute
+  top: -30px
+  right: -30px
+  &:hover
+    .icon
+      fill: #fff
+
+.icon
+  width: 25px
+  height: 25px
+  fill: $gray
+  transition: all .5s ease
