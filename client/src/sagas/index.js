@@ -1,5 +1,7 @@
 export { fetchAdminSaga } from './auth/fetchAdminSaga';
 export { loginSaga } from './auth/loginSaga';
+export { resetPasswordSaga } from './auth/resetPasswordSaga';
+export { setPasswordSaga } from './auth/setPasswordSaga';
 export { logoutSaga } from './auth/logoutSaga';
 
 export { editProfileSaga } from './profile/editProfileSaga';

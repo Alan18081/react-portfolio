@@ -17,7 +17,7 @@ const adminProject = ({edit,remove,project}) => (
   >
     <div className={classes.header}>
       <div className={classes.image}>
-        <img src={`/uploads/projects/${project.get('mainImage')}`} alt="Main"/>
+        <img src={project.get('mainImageUrl')} alt="Main"/>
       </div>
       <div className={classes.caption}>
         <div>
@@ -51,7 +51,7 @@ const adminProject = ({edit,remove,project}) => (
         <div className={classes.images}>
           {project.get('images').map(image => (
             <div key={image} className={classes.imageItem}>
-              <img src={`/uploads/projects/${image}`} alt="Project"/>
+              <img src={image.get('url')} alt="Project"/>
             </div>
           ))}
         </div>

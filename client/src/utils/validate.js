@@ -77,3 +77,27 @@ export const validateTech = ({name,icon}) => {
   }
   return errors;
 };
+
+export const validateSetPassword = ({password,confirmPassword}) => {
+  const errors = {};
+  if(!password) {
+    errors.password = 'Password cannot be empty';
+  }
+  else if(password.length < 6) {
+    errors.password = 'Password should have at least 6 characters';
+  }
+  else if(password !== confirmPassword) {
+    errors.password = 'Passwords should match';
+  }
+
+  if(!confirmPassword) {
+    errors.confirmPassword = 'Password cannot be empty';
+  }
+  else if(confirmPassword.length < 6) {
+    errors.confirmPassword = 'Password should have at least 6 characters';
+  }
+  else if(password !== confirmPassword) {
+    errors.confirmPassword = 'Passwords should match';
+  }
+  return errors;
+};

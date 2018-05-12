@@ -43,6 +43,14 @@ export {
   loginSuccess,
   loginStart,
   loginFailed,
+  resetPassword,
+  resetPasswordStart,
+  resetPasswordFailed,
+  resetPasswordSuccess,
+  setPassword,
+  setPasswordStart,
+  setPasswordSuccess,
+  setPasswordFailed,
   logout,
   logoutSuccess
 } from './auth';

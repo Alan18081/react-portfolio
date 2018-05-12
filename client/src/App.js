@@ -24,6 +24,7 @@ import Spinner from './components/UI/Spinner';
 import EditProject from './containers/EditProject';
 import PageNotFound from './components/PageNotFound';
 import ServerError from './components/ServerError';
+import SetPassword from './components/SetPassword';
 
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
     if(error) {
       return <ServerError error={error}/>
     }
-    if(profile.size > 0) {
+    if(profile) {
       content = (
         <Switch>
           <Route path="/" exact component={Main}/>
@@ -56,6 +57,7 @@ class App extends Component {
           <Route path="/admin/newProject" component={NewProject}/>
           <Route path="/admin/editProject/:id" component={EditProject}/>
           <Route path="/admin/dashboard" component={AdminDashboard}/>
+          <Route path="/setPassword/:token" component={SetPassword}/>
           <Route path="/*" component={PageNotFound}/>
         </Switch>
       )
@@ -66,7 +68,7 @@ class App extends Component {
 
 const mapStateToProps = ({serverError,profile,auth,skills}) => ({
   error: serverError,
-  profile,
+  profile: profile.get('data'),
   skills: skills.get('skills'),
   admin: auth.get('admin')
 });
