@@ -57,7 +57,7 @@ module.exports = app => {
           ...req.body
         },
         {new: true}
-      );
+      ).populate('technologies');
       if(req.file) {
         await removeImage(project.mainImageId);
         const {url,public_id} = await uploadImage(req.file.path);

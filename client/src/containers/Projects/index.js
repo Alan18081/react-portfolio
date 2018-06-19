@@ -53,7 +53,7 @@ class Projects extends Component {
                     key={project.get('_id')}
                     id={project.get('_id')}
                     name={project.get('projectName')}
-                    image={project.get('mainImage')}
+                    image={project.get('mainImageUrl')}
                     technologies={project.get('technologies')}
                   />
                 ))}
@@ -82,7 +82,7 @@ class Projects extends Component {
                   <ProjectPreview
                     key={project.get('_id')}
                     showSlide={() => this.slider.slickGoTo(i)}
-                    image={project.get('mainImage')}
+                    image={project.get('mainImageUrl')}
                     name={project.get('projectName')}
                   />
                 ))}
