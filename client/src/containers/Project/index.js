@@ -34,7 +34,7 @@ class Project extends Component {
       item === this.state.activeSlideIndex && classes.dotsItemActive
     ];
     return (
-      <button onClick={() => this.toggleSlideHandler(item)} className={cssClasses.join(' ')}>
+      <button key={item} onClick={() => this.toggleSlideHandler(item)} className={cssClasses.join(' ')}>
 
       </button>
     );
@@ -44,7 +44,10 @@ class Project extends Component {
     if(!project) {
       return <Spinner size={12} center/>;
     }
-    const images = new List().concat(project.get('mainImage')).concat(project.get('images'));
+    console.log(project.toJS());
+    const images = new List()
+      .concat(project.get('mainImageUrl'))
+      .concat(project.get('images').map(image => image.get('url')));
     return (
       <Layout>
         <div className={classes.container}>
@@ -58,8 +61,8 @@ class Project extends Component {
               adaptiveHeight={true}
             >
               {images.map(image => (
-                <div className={classes.imageItem}>
-                  <img src={`/uploads/projects/${image}`} alt="Project"/>
+                <div key={image} className={classes.imageItem}>
+                  <img src={image} alt="Project"/>
                 </div>
               ))}
             </Slider>
@@ -68,20 +71,20 @@ class Project extends Component {
             </div>
           </div>
           <div className={classes.info}>
-            <Title>Photobook</Title>
-            <h4 className={classes.type}>Web-application</h4>
+            <Title>{project.get('projectName')}</Title>
+            <h4 className={classes.type}>{project.get('appType')}</h4>
             <Functions
               list={project.get('functions')}
             />
-            <div className={classes.tech}>
+            {project.get('technologies').size ? <div className={classes.tech}>
               {project.get('technologies').map(tech => (
-                <div className={classes.techItem}>
+                <div key={tech.get('_id')} className={classes.techItem}>
                   <i className={[classes.techIcon,`devicon-${tech.get('wordmark')}`].join(' ')}></i>
                 </div>
               ))}
-            </div>
+            </div> : null}
             <div className={classes.controls}>
-              <a href="http://google.com" rel="noopener noreferrer" target="_blank">
+              <a href={project.get('link')} rel="noopener noreferrer" target="_blank">
                 <Button>Show app</Button>
               </a>
               <Link to="/projects">

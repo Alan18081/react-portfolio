@@ -17,8 +17,8 @@ class Profile extends Component {
 
   };
   render() {
-    const {profile,skills} = this.props;
-    if(!profile || !skills) {
+    const {profile,skills, contacts} = this.props;
+    if(!profile || !skills || !contacts) {
       return <Spinner size={12} center/>;
     }
     return (
@@ -29,6 +29,7 @@ class Profile extends Component {
           name={profile.get('name')}
           profession={profile.get('profession')}
           story={profile.get('story')}
+          github={contacts.get('github')}
         />
         <Skills
           skills={skills}
@@ -38,9 +39,10 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = ({profile,skills}) => ({
+const mapStateToProps = ({profile,skills,contacts}) => ({
   profile: profile.get('data'),
-  skills: skills.get('list')
+  skills: skills.get('list'),
+  contacts: contacts.get('list')
 });
 
 const mapDispatchToProps = dispatch => ({
