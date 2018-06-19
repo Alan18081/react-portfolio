@@ -43,14 +43,14 @@ const adminProject = ({edit,remove,project}) => (
         }
         <div className={classes.tech}>
           {project.get('technologies').map(tech => (
-            <div key={tech.get('name')} className={classes.techItem}>
+            <div key={tech.get('_id')} className={classes.techItem}>
               {tech.get('name')}
             </div>
           ))}
         </div>
         <div className={classes.images}>
           {project.get('images').map(image => (
-            <div key={image} className={classes.imageItem}>
+            <div key={image.get('url')} className={classes.imageItem}>
               <img src={image.get('url')} alt="Project"/>
             </div>
           ))}

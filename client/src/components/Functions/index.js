@@ -10,7 +10,7 @@ const functions = ({list}) => (
   <div className={classes.functions}>
     <Subtitle>Core functionality</Subtitle>
     {list.map(item => (
-      <div className={classes.function}>
+      <div key={item} className={classes.function}>
         <GearIcon className={classes.icon}/>
         {item}
       </div>

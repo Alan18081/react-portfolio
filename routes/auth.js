@@ -11,6 +11,7 @@ module.exports = app => {
   });
 
   app.post('/api/login',validateLogin,(req,res,next) => {
+    console.log('I am logging');
     passport.authenticate('local.login',(err,user,info) => {
       if(err) {
         console.log(err);

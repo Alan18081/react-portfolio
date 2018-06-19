@@ -100,7 +100,7 @@ class AdminProjects extends Component {
                   beforeChange={this.onChangeSlide}
                 >
                   {projects.map(project => (
-                    <div className={classes.slide} key={project.get('_id')}>
+                    <div className={classes.slide} key={Math.random()}>
                       <AdminProject
                         project={project}
                         remove={this.showRemovingModal}
