@@ -5,8 +5,12 @@ module.exports = app => {
   app.get('/api/contacts',async (req,res) => {
     try {
       const contacts = await Contacts.findOne({});
-      console.log(contacts);
-      res.send(contacts);
+      if(!contacts) {
+        const newContacts = new Contacts();
+        newContacts.save();
+        return res.send(newContacts);
+      }
+      return res.send(contacts);
     }
     catch(error) {
       console.log(error);

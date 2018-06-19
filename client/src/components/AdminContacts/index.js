@@ -41,6 +41,7 @@ class AdminContacts extends Component {
   };
   render() {
     const {handleSubmit,initialValues,loading} = this.props;
+    console.log(initialValues);
     let content = <Spinner center size={12}/>;
     if(initialValues) {
       content = <Panel>

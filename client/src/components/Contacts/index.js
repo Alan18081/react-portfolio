@@ -27,7 +27,7 @@ const SocialItem = ({link,Icon,text,mail}) => {
   );
   if(link) {
     content = (
-      <a href={`https://${link}`} className={[classes.socialItem,classes.socialLink].join(' ')}>
+      <a target="_blank" href={text} className={[classes.socialItem,classes.socialLink].join(' ')}>
         <Icon className={classes.icon}/>
         {text}
       </a>
