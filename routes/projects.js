@@ -59,12 +59,15 @@ module.exports = app => {
         {new: true}
       ).populate('technologies');
       if(req.file) {
-        await removeImage(project.mainImageId);
+        if(project.mainImageId) {
+          await removeImage(project.mainImageId);
+        }
         const {url,public_id} = await uploadImage(req.file.path);
         project.mainImageUrl = url;
         project.mainImageId = public_id;
         await project.save();
       }
+      console.log(project);
       res.send(project);
     }
     catch(error) {

@@ -14,6 +14,8 @@ export function* editProjectSaga() {
   yield takeLatest(EDIT_PROJECT,function* ({payload}) {
     try {
       yield put(editProjectStart());
+      console.log(payload);
+      debugger;
       const formData = createFormData(payload);
       const {data} = yield call(axios.put,`/api/projects/${payload._id}`,formData);
       yield put(editProjectSuccess(data));
