@@ -17,7 +17,7 @@ const userInfo = ({image,name,profession,story,github}) => (
       <h4 className={classes.profession}>{profession}</h4>
       <p className={classes.story}>{story}</p>
       <div className={classes.controls}>
-        <Button>Download resume</Button>
+        {/*<Button>Download resume</Button>*/}
         <a href={github} target="_blank" className={classes.github}>
           <GithubIcon className={classes.icon}/>
           My code
