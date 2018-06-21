@@ -16,9 +16,9 @@ const serverError = ({error}) => (
       <Title>Server Error</Title>
       <Subtitle>Please reload the page and try again to {error} or try later</Subtitle>
       <ErrorIcon className={classes.icon}/>
-      <Link to="/">
+      <a href="/">
         <Button>Main page</Button>
-      </Link>
+      </a>
     </Panel>
   </div>
 );
