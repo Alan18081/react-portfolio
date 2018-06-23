@@ -1,5 +1,5 @@
 const Email = require('../models/Email');
-const mailer = require('../services/sendgrid/mailer');
+const {sendEmail} = require('../services/sendgrid/mailer');
 
 module.exports = app => {
 
@@ -16,7 +16,7 @@ module.exports = app => {
 
   app.post('/api/emails', async (req,res) => {
     try {
-      mailer(req.body);
+      sendEmail(req.body);
       const newEmail = new Email(req.body);
       await newEmail.save();
       res.send(newEmail);
