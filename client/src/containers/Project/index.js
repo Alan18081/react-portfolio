@@ -59,6 +59,12 @@ class Project extends Component {
               infinite={true}
               speed={500}
               adaptiveHeight={true}
+              beforeChange={(oldIndex,newIndex) => {
+                console.log('Hello');
+                this.setState({
+                  activeIndex: newIndex
+                });
+              }}
             >
               {images.map(image => (
                 <div key={image} className={classes.imageItem}>

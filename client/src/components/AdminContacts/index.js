@@ -18,7 +18,7 @@ import LinkedInIcon from '../../assets/icons/linkedin-logo.svg';
 import VkIcon from '../../assets/icons/vk-social-network-logo.svg';
 import EmailIcon from '../../assets/icons/close-envelope.svg';
 import GithubIcon from '../../assets/icons/github-logo.svg';
-import FbIcon from '../../assets/icons/facebook-logo.svg';
+// import FbIcon from '../../assets/icons/facebook-logo.svg';
 
 const ContactItem = ({meta,input,Icon,title}) => (
   <div className={classes.contactsContainer}>
@@ -41,7 +41,6 @@ class AdminContacts extends Component {
   };
   render() {
     const {handleSubmit,initialValues,loading} = this.props;
-    console.log(initialValues);
     let content = <Spinner center size={12}/>;
     if(initialValues) {
       content = <Panel>
@@ -77,12 +76,12 @@ class AdminContacts extends Component {
               title="Vkonakte link"
               component={ContactItem}
             />
-            <Field
-              Icon={FbIcon}
-              name="facebook"
-              title="Facebook link"
-              component={ContactItem}
-            />
+            {/*<Field*/}
+              {/*Icon={FbIcon}*/}
+              {/*name="facebook"*/}
+              {/*title="Facebook link"*/}
+              {/*component={ContactItem}*/}
+            {/*/>*/}
           </div>
           <Controls loading={loading}>
             <Button>Save contacts</Button>
