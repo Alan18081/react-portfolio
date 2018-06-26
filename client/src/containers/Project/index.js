@@ -44,7 +44,6 @@ class Project extends Component {
     if(!project) {
       return <Spinner size={12} center/>;
     }
-    console.log(project.toJS());
     const images = new List()
       .concat(project.get('mainImageUrl'))
       .concat(project.get('images').map(image => image.get('url')));

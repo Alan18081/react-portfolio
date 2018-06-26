@@ -1,4 +1,5 @@
 @import '../../styles/vars'
+@import '../../styles/smart-grid'
 
 .container
   margin: 30px auto 0
@@ -7,12 +8,16 @@
 .social
   display: flex
   flex-wrap: wrap
+  +sm-block
+    flex-direction: column
 
 .socialContainer
   width: 50%
+  +sm-block
+    width: 100%
 
 .socialItem
-  display: inline-flex
+  display: flex
   align-items: center
   padding: 10px 15px
   margin-bottom: 10px
