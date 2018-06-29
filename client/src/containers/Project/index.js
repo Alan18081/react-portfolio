@@ -31,7 +31,7 @@ class Project extends Component {
   renderDot = item => {
     const cssClasses = [
       classes.dotsItem,
-      item === this.state.activeSlideIndex && classes.dotsItemActive
+      item === this.state.activeSlideIndex ? classes.dotsItemActive : ''
     ];
     return (
       <button key={item} onClick={() => this.toggleSlideHandler(item)} className={cssClasses.join(' ')}>
@@ -59,10 +59,9 @@ class Project extends Component {
               speed={500}
               adaptiveHeight={true}
               beforeChange={(oldIndex,newIndex) => {
-                console.log('Hello');
-                this.setState({
-                  activeIndex: newIndex
-                });
+                this.setState(prevState => ({
+                  activeSlideIndex: newIndex
+                }));
               }}
             >
               {images.map(image => (
